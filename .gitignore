@@ -1,0 +1,33 @@
+# Virtual environment
+venv/
+**/venv/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Bob IDE
+.bob/
+
+# Pytest cache
+.pytest_cache/
+**/.pytest_cache/
+
+# Documentation folder
+docs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+*.env

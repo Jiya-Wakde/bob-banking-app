@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureBank — Dashboard</title>
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom overrides -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="bg-light">
+
+  <!-- ── Navigation bar ───────────────────────────────────────────────── -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/dashboard">🏦 SecureBank</a>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <span class="text-white-50 small d-none d-sm-inline">
+          Welcome, <strong class="text-white">{{ name }}</strong>
+        </span>
+        <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Main content ─────────────────────────────────────────────────── -->
+  <main class="container py-4">
+
+    <!-- Mobile-only welcome (hidden on sm+) -->
+    <p class="text-muted d-sm-none mb-3">
+      Welcome back, <strong>{{ name }}</strong>
+    </p>
+
+    <!-- ── Feedback alert ─────────────────────────────────────────────── -->
+    {% if message %}
+    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <!-- ── Balance card ───────────────────────────────────────────────── -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body text-center py-4">
+        <p class="text-muted mb-1 small text-uppercase fw-semibold letter-spacing">
+          Current Balance
+        </p>
+        <h2 class="display-5 fw-bold text-success mb-0">
+          ${{ "%.2f"|format(balance) }}
+        </h2>
+      </div>
+    </div>
+
+    <!-- ── Transaction forms ──────────────────────────────────────────── -->
+    <div class="row g-4">
+
+      <!-- Deposit -->
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-3">
+              <span class="text-success me-1">&#43;</span> Deposit Funds
+            </h5>
+            <form method="POST" action="/deposit" novalidate>
+              <div class="mb-3">
+                <label for="deposit-amount" class="form-label">Amount ($)</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    id="deposit-amount"
+                    name="amount"
+                    class="form-control"
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success">Deposit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Withdraw -->
+      <div class="col-12 col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-3">
+              <span class="text-danger me-1">&#8722;</span> Withdraw Funds
+            </h5>
+            <form method="POST" action="/withdraw" novalidate>
+              <div class="mb-3">
+                <label for="withdraw-amount" class="form-label">Amount ($)</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input
+                    type="number"
+                    id="withdraw-amount"
+                    name="amount"
+                    class="form-control"
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-danger">Withdraw</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="text-center text-muted small py-3 mt-4 border-top">
+    &copy; 2025 SecureBank &mdash; Banking Workshop Demo
+  </footer>
+
+  <!-- Bootstrap 5 JS bundle (CDN) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmEQnJpEFRzJlZ8hJYhiD8RMa5"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>

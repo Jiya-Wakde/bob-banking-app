@@ -1,0 +1,44 @@
+/*
+ * styles.css — Custom overrides on top of Bootstrap 5.
+ *
+ * Keep this minimal; Bootstrap handles the heavy lifting.
+ */
+
+/* ── Global ────────────────────────────────────────────────────────────── */
+
+body {
+  font-size: 15px;
+}
+
+/* ── Login page — extra vertical breathing room ─────────────────────── */
+
+.card {
+  border-radius: 0.75rem;
+}
+
+/* ── Balance card ────────────────────────────────────────────────────── */
+
+.display-5 {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Navbar ──────────────────────────────────────────────────────────── */
+
+.navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Letter-spacing utility (used on "Current Balance" label) ────────── */
+
+.letter-spacing {
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive tweaks ────────────────────────────────────────────────── */
+
+@media (max-width: 575.98px) {
+  main.container {
+    padding-top: 1.25rem;
+  }
+}
