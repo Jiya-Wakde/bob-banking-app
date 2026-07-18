@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Banking Workshop — SecureBank
 
 A simple, fully-featured banking web application built with **Python Flask**, **SQLite**, and **Bootstrap 5**.
@@ -116,3 +117,7 @@ flask run
 - All SQL queries use **parameterised statements** — no SQL injection risk.
 - The database schema enforces `balance >= 0` at the DB level as a last-resort guard.
 - `session.clear()` on logout immediately invalidates the server-side session.
+=======
+# bob-banking-app
+Banking web application built with Flask, SQLite and Bootstrap
+>>>>>>> 3e8b53bf3fec78a806f44747564f6662e601f219
